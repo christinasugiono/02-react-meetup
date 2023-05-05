@@ -6,9 +6,17 @@ import MeetupList from "../components/meetups/MeetupList"
 const FavoritesPage = () => {
   const favoriteCtx = useContext(FavoriteContext);
 
+  let content;
+
+  if (favoriteCtx.totalFavourites === 0) {
+    content = <p>You have no favorites, add some!</p>
+  } else {
+    content = <MeetupList meetups={favoriteCtx.favourites} />
+  }
+
   return <section>
     <h1>My Favorites</h1>
-    <MeetupList meetups={favoriteCtx.favourites} />
+    {content}
   </section>
 }
 
